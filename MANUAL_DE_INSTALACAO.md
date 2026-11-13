@@ -236,7 +236,7 @@ git log --oneline
 
 **Resultado esperado:** o terminal apresenta um commit no histórico.
 
-> **Importante:** não execute `git init` dentro de `04_repositorio_demo_git` se a pasta `.git` do exemplo estiver presente. Esse projeto já contém um histórico preparado para estudo.
+> **Importante:** a pasta `04_repositorio_demo_git` não possui mais um histórico `.git` independente. Os commits originais foram preservados em `06_exemplos/historico_git_demo.bundle`. Para consultá-los, siga a seção 12; não é necessário executar `git init` nessa pasta de exemplo.
 
 ---
 
@@ -266,7 +266,7 @@ O **Git** funciona no seu computador. O **GitHub** é um serviço online usado p
 
 > **Segurança:** nunca publique senhas, tokens, chaves privadas, dados reais de outras pessoas ou arquivos de configuração contendo segredos. Não compartilhe sua senha do GitHub com ninguém.
 
-Para a demonstração do histórico Git na AcademyTeam, não é obrigatório entrar no GitHub: o histórico pode ser examinado localmente com `git log --oneline`.
+Para a demonstração do histórico Git na AcademyTeam, não é obrigatório entrar no GitHub: o arquivo `06_exemplos/historico_git_demo.bundle` pode ser clonado localmente, e seu histórico consultado com `git log --oneline`, conforme a seção 12.
 
 ---
 
@@ -437,17 +437,17 @@ Se executar `CREATE TABLE` novamente em um banco onde a tabela já existe, receb
 4. Clique com o botão direito no arquivo ZIP e escolha **Extrair Tudo** (Windows).
 5. Extraia para uma pasta de fácil acesso, por exemplo `Documentos\AcademyTeam`.
 
-**Importante:** um ZIP baixado pelo botão **Download ZIP** de um repositório GitHub **não traz o histórico Git `.git`** do repositório. Para estudar o histórico, clone um repositório preparado para isso ou utilize o pacote de demonstração disponibilizado pela equipe, quando incluir essa pasta oculta.
+**Importante:** o botão **Download ZIP** do GitHub não inclui a pasta oculta `.git` com o histórico do repositório principal. Porém, o material da AcademyTeam inclui o arquivo `06_exemplos/historico_git_demo.bundle` com os commits didáticos. Por isso, também é possível estudar o histórico original após baixar o ZIP; siga a seção 12.
 
 ### Opção 2 — Clonar com Git
 
 Se o Git já estiver instalado e a AcademyTeam fornecer o endereço do repositório:
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/paulojunior6886/AcademyTeam_Formacao_Iniciante_Projetos.git
 ```
 
-**Substitua `URL_DO_REPOSITORIO` pelo endereço real.** Não copie literalmente esse texto como se fosse um link válido.
+**Esse comando usa o endereço público do repositório da AcademyTeam.**
 
 ### Estrutura esperada dos materiais
 
@@ -574,20 +574,47 @@ Troque o nome da pasta conforme a atividade. Em macOS/Linux, use `python3 main.p
 
 ## 12. Testar o histórico Git
 
-O material da AcademyTeam inclui um exemplo de repositório na pasta `04_repositorio_demo_git`.
+O material da AcademyTeam inclui o histórico original de um pequeno projeto Git no arquivo `06_exemplos/historico_git_demo.bundle`. A pasta `04_repositorio_demo_git` contém o código e a documentação, mas **não possui mais uma pasta `.git` independente**.
 
-1. Abra essa pasta no VS Code.
-2. Abra um terminal **dentro dela**.
-3. Execute:
+### Passo 1 — Abrir a raiz do material
+
+No VS Code, abra a pasta principal da Formação, onde aparecem as pastas `01_sem_persistencia`, `04_repositorio_demo_git` e `06_exemplos`.
+
+### Passo 2 — Clonar o histórico didático
+
+Abra o terminal na raiz da Formação e execute:
 
 ```bash
-git status
-git log --oneline
+git clone 06_exemplos/historico_git_demo.bundle ../AcademyTeam_Git_Demo
 ```
 
-**O que observar:** o histórico apresenta as diferentes etapas registradas no Git.
+Isso cria uma cópia independente do projeto demonstrativo fora da pasta principal. A branch da cópia pode se chamar `master`, pois mantém o nome histórico original.
 
-**Se `git log` disser que não existem commits ou que a pasta não é um repositório:** confira se o diretório oculto `.git` veio junto com o material. Downloads em ZIP pelo GitHub não incluem o histórico `.git`; nesse caso, utilize o pacote de demonstração original fornecido pela equipe ou pratique criando seus próprios commits.
+**Se a pasta de destino já existir**, reutilize-a ou escolha outro nome, como `../AcademyTeam_Git_Demo_2`.
+
+### Passo 3 — Visualizar os commits
+
+Ainda a partir da raiz, execute:
+
+```bash
+git -C ../AcademyTeam_Git_Demo log --oneline
+```
+
+**Resultado esperado:** uma lista de commits que registra a evolução do projeto, incluindo cadastro, listagem, conclusão e persistência.
+
+Para examinar os primeiros passos em ordem cronológica:
+
+```bash
+git -C ../AcademyTeam_Git_Demo log --oneline --reverse
+```
+
+Para consultar o estado da cópia do exemplo:
+
+```bash
+git -C ../AcademyTeam_Git_Demo status
+```
+
+**Observação:** executar `git log` diretamente dentro de `04_repositorio_demo_git` poderá mostrar o histórico do repositório principal da Formação. Para estudar os commits didáticos originais, use a pasta criada a partir do `.bundle`.
 
 ---
 

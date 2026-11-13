@@ -4,11 +4,11 @@
 
 ## 1. Qual é o objetivo desta pasta?
 
-Este diretório contém uma versão funcional do Gerenciador de Estudos e um **repositório Git local com histórico de commits**. Seu propósito é mostrar que um projeto de software pode evoluir por etapas e que o Git permite registrar essas mudanças.
+Este diretório contém uma versão funcional do Gerenciador de Estudos usada para demonstrar a evolução de um software. O **histórico original de commits foi preservado no arquivo `06_exemplos/historico_git_demo.bundle`**, disponível na raiz do material. Para visualizar esse histórico, é preciso clonar o arquivo `.bundle`, conforme a seção 3.
 
 **Onde aparece na Formação:** Conexão 03 (organização de projeto) e Atividade 03 (Git e GitHub).
 
-**Importante:** este é um repositório **local** de demonstração. A existência do histórico Git não significa que ele já esteja publicado no GitHub.
+**Importante:** esta pasta é parte do repositório principal da Formação e não possui mais um `.git` próprio. O `.bundle` contém o histórico didático independente; ele não significa que o projeto demonstrativo esteja publicado como repositório separado no GitHub.
 
 ## 2. Requisitos e arquivos
 
@@ -18,32 +18,50 @@ Este diretório contém uma versão funcional do Gerenciador de Estudos e um **r
 
 ```text
 04_repositorio_demo_git/
-├── .git/                  # Histórico e configurações locais do Git
 ├── main.py                # Programa Python
 ├── dados.txt              # Atividades armazenadas
 ├── README.md              # Este guia
 └── HISTORICO_COMMITS.txt  # Resumo de parte do histórico
+
+06_exemplos/
+└── historico_git_demo.bundle  # Histórico Git original, pronto para clonar
 ```
 
-A pasta `.git` costuma ficar **oculta**. Verifique se ela veio junto com a extração do pacote; sem ela, o comando `git log` não encontrará o histórico de demonstração.
+O histórico original **não está mais em uma pasta `.git` dentro de `04_repositorio_demo_git`**. Ele foi preservado em um `.bundle`, para que todos os materiais possam ser publicados juntos no repositório principal.
 
 ## 3. Como explorar o histórico do projeto
 
-Abra um terminal **dentro de `04_repositorio_demo_git`** e execute:
+**Faça estes comandos a partir da raiz do material da Formação**, onde aparecem as pastas `01_sem_persistencia`, `04_repositorio_demo_git` e `06_exemplos`.
+
+### Passo 1 — Criar uma cópia do histórico de demonstração
+
+No terminal, execute:
 
 ```bash
-git log --oneline
+git clone 06_exemplos/historico_git_demo.bundle ../AcademyTeam_Git_Demo
 ```
 
-O comando mostra commits do mais recente para o mais antigo, com um identificador curto e uma mensagem descritiva.
+Esse comando cria a pasta `AcademyTeam_Git_Demo` **fora da pasta principal**, contendo os commits originais do exemplo. É normal que a branch dessa cópia se chame `master`, pois ela preserva o histórico antigo.
 
-Para visualizar a evolução em ordem cronológica:
+> Caso a pasta `../AcademyTeam_Git_Demo` já exista, reutilize-a ou escolha outro nome de destino no comando; o Git não clona sobre um diretório de destino existente e não vazio.
+
+### Passo 2 — Consultar os commits
+
+Ainda a partir da raiz do material, execute:
 
 ```bash
-git log --oneline --reverse
+git -C ../AcademyTeam_Git_Demo log --oneline
 ```
 
-O pacote registra etapas como:
+O comando mostra os commits do mais recente para o mais antigo, com identificador curto e mensagem descritiva.
+
+Para ver em ordem cronológica:
+
+```bash
+git -C ../AcademyTeam_Git_Demo log --oneline --reverse
+```
+
+O histórico registra etapas como:
 
 1. Estrutura inicial do projeto.
 2. Cadastro de atividades.
@@ -52,27 +70,29 @@ O pacote registra etapas como:
 5. Persistência e documentação.
 6. Inclusão de um resumo textual do histórico.
 
-O arquivo `HISTORICO_COMMITS.txt` reúne as cinco etapas principais; o histórico real também contém um commit posterior relacionado à documentação.
+O arquivo `04_repositorio_demo_git/HISTORICO_COMMITS.txt` apresenta um resumo textual de parte dessas etapas.
 
 ### Outros comandos úteis
 
 ```bash
-git status
+git -C ../AcademyTeam_Git_Demo status
 ```
 
-Mostra arquivos alterados, não rastreados e o estado da pasta de trabalho. Se você executou o Python, podem aparecer arquivos de `__pycache__`; isso não significa que o projeto esteja com defeito.
+Mostra o estado da cópia do projeto demonstrativo, e não do repositório principal da Formação.
 
 ```bash
-git show --stat HEAD
+git -C ../AcademyTeam_Git_Demo show --stat HEAD
 ```
 
-Mostra um resumo dos arquivos envolvidos no commit mais recente.
+Mostra os arquivos envolvidos no commit mais recente da demonstração.
 
 ```bash
-git log --oneline --max-count=3
+git -C ../AcademyTeam_Git_Demo log --oneline --max-count=3
 ```
 
-Exibe apenas os três commits mais recentes.
+Exibe os três commits mais recentes.
+
+**Atenção:** se executar `git log` diretamente em `04_repositorio_demo_git`, o comando poderá mostrar o histórico do **repositório principal** da Formação, não o histórico didático. Utilize a cópia `AcademyTeam_Git_Demo` para estudar os commits originais.
 
 ## 4. Como executar o programa Python
 
@@ -207,7 +227,7 @@ Substitua `URL_DO_SEU_REPOSITORIO` pelo endereço verdadeiro. O envio exigirá a
 
 ## 9. Desafios para praticar
 
-1. Encontre no `git log` o commit que adicionou a persistência.
+1. Na cópia `AcademyTeam_Git_Demo`, encontre no `git log` o commit que adicionou a persistência.
 2. Explique a diferença entre `git status` e `git log`.
 3. Crie um repositório próprio com pelo menos dois commits feitos em momentos distintos.
 4. Melhore o README do seu projeto para explicar as funcionalidades e a execução.
@@ -216,24 +236,11 @@ Substitua `URL_DO_SEU_REPOSITORIO` pelo endereço verdadeiro. O envio exigirá a
 ## 10. Problemas comuns
 
 - **`git` não é reconhecido:** instale o Git e abra novamente o terminal.
-- **`not a git repository`:** confirme que você está dentro da pasta certa e que `.git` foi extraída.
-- **Arquivos temporários no `git status`:** a execução de Python pode criar `__pycache__/`; não é necessário versioná-los.
+- **`not a git repository`:** para estudar o histórico demonstrativo, primeiro execute `git clone 06_exemplos/historico_git_demo.bundle ../AcademyTeam_Git_Demo` na raiz e consulte a pasta clonada.
+- **Arquivos temporários no `git status`:** a execução de Python pode criar `__pycache__/`; não é necessário versioná-los. Verifique se está consultando a cópia do exemplo ou o repositório principal.
 - **Commit solicita nome/e-mail:** configure a identidade do Git antes de continuar.
 - **`git push` falhou:** verifique o endereço do remoto, a conexão e a autenticação da conta; o repositório local continua disponível.
 
 ## 11. Para continuar
 
 Acompanhe o Projeto Integrador em `03_projeto_final` e utilize o Git para registrar sua própria evolução. O objetivo é conseguir explicar **o que mudou**, **por que mudou** e **em qual etapa** cada recurso foi adicionado.
-
-## Como consultar o histórico Git original
-
-O histórico didático deste projeto está disponível no arquivo
-`06_exemplos/historico_git_demo.bundle`.
-
-A partir da raiz do repositório da Formação, execute:
-
-```bash
-git clone 06_exemplos/historico_git_demo.bundle ../Exemplo_Git_Historico
-cd ../Exemplo_Git_Historico
-git log --oneline
-
