@@ -1,0 +1,7 @@
+01_sem_persistencia/main.py: OK
+02_com_persistencia/main.py: OK
+03_projeto_final/main.py: OK
+04_repositorio_demo_git/main.py: OK
+run:01_sem_persistencia: OK
+run:02_com_persistencia: OK
+run:03_projeto_final: OK

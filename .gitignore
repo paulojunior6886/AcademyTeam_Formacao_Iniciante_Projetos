@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Configurações pessoais
+.vscode/
+.env
+.env.*
+!.env.example
+
+# Arquivos temporários
+*.log
+.DS_Store
+Thumbs.db

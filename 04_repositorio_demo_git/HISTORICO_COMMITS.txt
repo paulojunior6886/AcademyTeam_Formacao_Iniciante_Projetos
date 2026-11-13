@@ -1,0 +1,5 @@
+c7fc94c Estrutura inicial do projeto
+e510ec0 Adiciona cadastro de atividades
+91a3865 Adiciona listagem de atividades
+304f17a Adiciona conclusão de atividades
+b774f8b Adiciona persistência e documentação

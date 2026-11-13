@@ -1,0 +1,4 @@
+id|titulo|descricao|concluida|data_criacao
+1|Estudar Python|Revisar estruturas de repetição|true|2026-08-14 14:00
+2|Revisar Git|Praticar commits e histórico|false|2026-08-14 14:10
+3|Fazer exercícios|Concluir atividade da formação|false|2026-08-14 14:20
